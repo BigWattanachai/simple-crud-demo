@@ -17,17 +17,17 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-//    @Bean
-//    CommandLineRunner runner(MemberRepo memberRepo) {
-//        return args -> {
-//            final List<String> members = Arrays.asList("Cherprang", "Tarwarn", "Kaw", "Milin");
-//            members.forEach(it -> {
-//                Member member = new Member();
-//                member.setName(it);
-//                memberRepo.save(member);
-//            });
-//
-//            memberRepo.findAll().forEach(System.out::println);
-//        };
-//    }
+    @Bean
+    CommandLineRunner runner(MemberRepo memberRepo) {
+        return args -> {
+            final List<String> members = Arrays.asList("Cherprang", "Tarwarn", "Kaw", "Milin");
+            members.forEach(it -> {
+                Member member = new Member();
+                member.setName(it);
+                memberRepo.save(member);
+            });
+
+            memberRepo.findAll().forEach(System.out::println);
+        };
+    }
 }
