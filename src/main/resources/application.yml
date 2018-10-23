@@ -1,0 +1,65 @@
+
+spring:
+  application:
+    name: demo
+  profiles.active: test
+  jackson:
+      property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+      base-path: /${spring.application.name}
+      path-mapping:
+        health: /${spring.application.name}/health
+        info: /${spring.application.name}/info
+        metrics: /${spring.application.name}/metrics
+  endpoint:
+    health:
+      show-details: always
+info.app:
+  name: ${spring.application.name}
+  version: 0.1
+#
+#---
+#spring:
+#  profiles: local
+#
+#  datasource:
+#    dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+#    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf8
+#    username: admin
+#    password: admin
+#
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    database: MYSQL
+#    openInView: false
+#    show_sql: false
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: none
+#
+#
+#---
+#spring:
+#  profiles: test
+#
+#  datasource:
+#    dataSourceClassName: org.h2.jdbcx.JdbcDataSource
+#    url: jdbc:h2:mem:demo;DB_CLOSE_DELAY=-1
+#    username: sa
+#    password:
+#
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    database: H2
+#    openInView: false
+#    show_sql: false
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: create-drop
+#
+#
