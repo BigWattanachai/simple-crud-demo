@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Member;
-import com.example.demo.exception.MemBerNotFoundException;
+import com.example.demo.exception.MemberNotFoundException;
 import com.example.demo.repository.MemberRepo;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class MemberService {
     }
 
     public Member getMember(Long id) {
-        return memberRepo.findById(id).orElseThrow(() -> new MemBerNotFoundException("Member Not Found."));
+        return memberRepo.findById(id).orElseThrow(() -> new MemberNotFoundException("Member Not Found."));
     }
 
     public List<Member> getAllMember() {
@@ -31,13 +31,13 @@ public class MemberService {
         return memberRepo.findById(id).map(it -> {
             it.setName(member.getName());
             return memberRepo.save(it);
-        }).orElseThrow(() -> new MemBerNotFoundException("Member Not Found."));
+        }).orElseThrow(() -> new MemberNotFoundException("Member Not Found."));
     }
 
     public Member deleteMember(Long id) {
         return memberRepo.findById(id).map(it -> {
             memberRepo.delete(it);
             return it;
-        }).orElseThrow(() -> new MemBerNotFoundException("Member Not Found."));
+        }).orElseThrow(() -> new MemberNotFoundException("Member Not Found."));
     }
 }
